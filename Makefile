@@ -6,11 +6,13 @@
 #    By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 14:48:00 by acarpent          #+#    #+#              #
-#    Updated: 2024/05/27 13:36:08 by acarpent         ###   ########.fr        #
+#    Updated: 2024/05/29 15:59:04 by acarpent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	$(shell find ./src -name '*.c')
+SRCS		=	$(shell find ./src -name '*.c')\
+				./get_next_line/get_next_line.c\
+				./get_next_line/get_next_line_utils.c\
 
 OBJS		=	$(SRCS:.c=.o)
 
@@ -22,42 +24,47 @@ CFLAGS		=	-Wall -Wextra -Werror -g3
 
 RM			=	rm -f
 
-LIBFT_PATH	=	./libft/
+LIBFT_PATH	=	./libft
 
-LIBFT_FILE	=	libft.a
+PRINTF_PATH	=	./ft_printf
 
-PRINTF_PATH	=	./ft_printf/
+LIBFT		=	$(LIBFT_PATH)/libft.a
 
-PRINTF_FILE	=	libftprintf.a
+PRINTF		=	$(PRINTF_PATH)/libftprintf.a
 
-MINILIBX	=	make -C ./minilibx-linux/
+# MINILIBX	=	make -C ./minilibx-linux/
 
-MLXFLAGS	=	-Lmlx_linux -L/usr/lib -lXext -lX11 -lm -lz
+# MLXFLAGS	=	-Lmlx_linux -L/usr/lib -lXext -lX11 -lm -lz
 
-MLX_EX		=	./minilibx-linux/libmlx.a
+# MLX_EX		=	./minilibx-linux/libmlx.a
 
-MLX_PATH	=	./minilibx-linux/
+# MLX_PATH	=	./minilibx-linux/
 
 NAME		=	so_long
 
 all: $(NAME)
 
-lib:	@make -C $(LIBFT_FILE)
+%.o:	%.c
+		$(CC) $(CFLAGS) -I$(LIBFT_PATH) -I$(PRINTF_PATH) -c $? -o $@
 
-printf:	@make -C $(PRINTF_PATH)
+$(NAME): $(OBJS) $(LIBFT) $(PRINTF)
+		$(CC) $(CLFAGS) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
 
-$(NAME): $(OBJS)
-		$(MINILIBX)
-		$(CC) $(CLFAGS) $(OBJS) $(MLX_EX) $(MLXFLAGS) $(LIBFT_PATH) $(LIBFT_FILE) $(PRINTF_PATH) $(PRINTF_FILE) -o $(NAME)
+$(LIBFT):
+		$(MAKE) -C $(LIBFT_PATH)
+
+$(PRINTF):
+		$(MAKE) -C $(PRINTF_PATH)
 
 clean:
 		$(RM) $(OBJS) 
-		make clean -sC $(MLX_PATH)
 		make clean -sC $(LIBFT_PATH)
 		make clean -sC $(PRINTF_PATH)
 
 fclean: clean
 		$(RM) $(NAME)
+		$(MAKE) fclean -C $(LIBFT_PATH)
+		$(MAKE) fclean -C $(PRINTF_PATH)
 
 re: fclean all
 

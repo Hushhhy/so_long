@@ -5,20 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 10:56:30 by acarpent          #+#    #+#             */
-/*   Updated: 2024/05/28 12:58:10 by acarpent         ###   ########.fr       */
+/*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
+/*   Updated: 2024/05/29 16:08:28 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 #include <stdio.h>
 
-void	ft_initmap(char *map)
+char    *ft_getmap(char *str)
 {
-	char	*line;
-	int		fd;
+    char    *map;
+    int     fd;
+    char    *line;
+	char	*tmp;
 
-	fd = open("map1.ber", O_WRONLY);
-	line = get_next_line(fd);
-	printf("%s\n", line);
+    fd = open(str, O_RDONLY);
+    if (fd < 0)
+        return (NULL);
+    map = ft_strdup("");
+    if (!map)
+        return (NULL);
+    while ((line = get_next_line(fd)) != NULL)
+    {
+		tmp = map;
+        map = ft_strjoin(line, map);
+		free(tmp);
+        if (!map)
+        {
+            close(fd);
+            return (NULL);
+        }
+    }
+    close(fd);
+    return (map);
 }
