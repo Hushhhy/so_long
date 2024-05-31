@@ -1,35 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 14:34:09 by acarpent          #+#    #+#             */
-/*   Updated: 2024/05/31 13:53:37 by acarpent         ###   ########.fr       */
+/*   Created: 2024/05/31 14:19:29 by acarpent          #+#    #+#             */
+/*   Updated: 2024/05/31 14:23:55 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-#include <stdio.h>
 
-int	main(int ac, char **av)
+void    ft_sizecheck(char **map);
+char	*ft_lastline(char **map);
+
+char	*ft_lastline(char **map)
 {
-	char 	*map;
-	char	**split;
+	char	*last;
+	int		i;
 
-	if (ac == 2)
+	i = 0;
+	while (map[i + 1])
+		i++;
+	last = map[i];
+	return (last);
+}
+
+void    ft_sizecheck(char **map)
+{
+    char    *tmp;
+    int     i;
+
+    i = 0;
+	tmp = map[0];
+	while (map[++i])
 	{
-		ft_checkname(av[1]);	
-		map = ft_getmap(av[1]);
-		split = ft_split(map, '\n');
-		ft_parsemap(split);
+		if (ft_strlen(tmp) != ft_strlen(map[i]))
+		{
+			ft_printf("Error! Wrong map format!");
+			exit(1);
+		}
 	}
-	else
-	{
-		ft_printf("Error\nArgument number must be 1 !");
-		return (0);
-	}
-	free(map);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:14:12 by acarpent          #+#    #+#             */
-/*   Updated: 2024/01/12 13:17:01 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:37:51 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char	*get_next_line(int fd)
 		if (mark <= 0)
 			break ;
 		buffer[mark] = '\0';
-		stash = ft_strjoin(buffer, stash);
+		stash = ft_strsjoin(buffer, stash);
 	}
 	free(buffer);
 	res = ft_line(stash);

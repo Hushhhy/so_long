@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:24:26 by acarpent          #+#    #+#             */
-/*   Updated: 2024/05/29 16:07:42 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:22:17 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,8 @@ typedef struct t_map {
 void    ft_checkname(char *str);
 char	*get_next_line(int fd);
 char	*ft_getmap(char *str);
+void	ft_parsemap(char **map);
+char	*ft_lastline(char **map);
+void    ft_sizecheck(char **map);
 
 #endif
