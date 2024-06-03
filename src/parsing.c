@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
-/*   Updated: 2024/05/31 14:43:21 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:28:19 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 char	*ft_getmap(char *str);
 void	ft_checkname(char *str);
-void	ft_parsemap(char **map);
+void	ft_parsemap(char **map, t_map *game);
+void	gamecheck(char **map, t_map *game);
+void	ft_count(t_map *game, char **map);
 
 char	*ft_getmap(char *str)
 {
@@ -68,16 +70,15 @@ void	ft_checkname(char *str)
 	}
 }
 
-void	ft_parsemap(char **map)
+void	ft_parsemap(char **map, t_map *game)
 {
 	char	*first;
 	char	*last;
 	int		i;
-	int		j;
-	
+
+	ft_sizecheck(map);
 	first = map[0];
 	last = ft_lastline(map);
-	ft_sizecheck(map);
 	i = 0;
 	while (first[i] && last[i])
 	{
@@ -88,18 +89,43 @@ void	ft_parsemap(char **map)
 		}
 		i++;
 	}
+	walls(map, first, last);
+	gamecheck(map, game);
+}
+
+void	gamecheck(char **map, t_map *game)
+{
+	ft_count(game, map);
+	if (game->P != 1 || game->C != 1 || game->E < 1)
+	{
+		ft_printf("Error! Wrong map Format!");
+		exit(1);
+	}
+}
+
+void	ft_count(t_map *game, char **map)
+{
+	int	i;
+	int	j;
+
 	i = 0;
-	j = ft_strlen(map[i]) - 1;
+	j = 0;
 	while (map[i])
 	{
-		if (map[i] == first || map[i] == last)
-			i++;
-		if (map[i][0] == '1' && map[i][j] == '1')
-			i++;
-		else
+		j = 0;
+		while (map[i][j])
 		{
-			ft_printf("Error! Wrong map format!");
-			exit(1);
+			if (map[i][j] == 'P')
+			{
+				game->x = i;
+				game->y = j;
+				game->P++;
+			}
+			if (map[i][j] == 'E')
+				game->E++;
+			if (map[i][j] == 'C')
+				game->C++;
+			j++;
 		}
 		i++;
 	}
