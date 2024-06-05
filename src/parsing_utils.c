@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:19:29 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/03 15:29:32 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:56:21 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@ void	walls(char **map, char *first, char *last);
 char	*ft_lastline(char **map)
 {
 	char	*last;
+	t_map	*size;
 	int		i;
 
 	i = 0;
+	size = NULL;
 	while (map[i + 1])
 		i++;
 	last = map[i];
+	size->height = i;
+	size->width = ft_strlen(map[i]);
 	return (last);
 }
 
