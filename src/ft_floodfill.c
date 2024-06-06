@@ -6,23 +6,28 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:48:44 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/05 15:55:32 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:57:04 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+void	ft_floodfill(int x, int y, char **copy);
+void	checkfloodfill(t_map *ptr);
+char	**ft_mapcopy(char **map);
+
 void	ft_floodfill(int x, int y, char **copy)
 {
 	t_map	*map;
 
+	map = NULL;
 	if (x >= map->width || y >= map->height || copy[y][x] == 'X')
 		return ;
 	if (copy[y][x] == '1' || copy[y][x] == 'N')
 		return ;
 	if (copy[y][x] == 'E')
 	{
-		copy[y][x] == 'X';
+		copy[y][x] = 'X';
 		return ;
 	}
 	copy[y][x] = 'X';
@@ -58,13 +63,14 @@ void	checkfloodfill(t_map *ptr)
 	}
 }
 
-char	ft_mapcopy(char **map)
+char	**ft_mapcopy(char **map)
 {
 	t_map	*size;
 	int		i;
 	char	**copy;
 
 	i = 0;
+	size = NULL;
 	copy = malloc(sizeof(char *) * (size->height + 1));
 	if (!copy)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:19:29 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/05 15:56:21 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:03:58 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ char	*ft_lastline(char **map)
 	size = NULL;
 	while (map[i + 1])
 		i++;
-	last = map[i];
 	size->height = i;
-	size->width = ft_strlen(map[i]);
+	last = map[i];
 	return (last);
 }
 
