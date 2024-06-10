@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:48:44 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/06 10:57:04 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/10 12:00:07 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,13 @@ void	checkfloodfill(t_map *ptr)
 			if (copy[i][j] == 'E' || copy[i][j] == 'C')
 			{
 				ft_printf("Error! Wrong floodfill!");
+				free(copy);
 				exit(1);
 			}
 			j++;
 		}
 		i++;
+		free(copy);
 	}
 }
 
@@ -73,7 +75,7 @@ char	**ft_mapcopy(char **map)
 	size = NULL;
 	copy = malloc(sizeof(char *) * (size->height + 1));
 	if (!copy)
-		return (NULL);
+		return (free(copy), NULL);
 	while (i < size->height)
 	{
 		copy[i] = ft_strdup(map[i]);

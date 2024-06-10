@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:34:09 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/03 15:15:48 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/10 13:45:57 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,20 @@ void	ft_structinit(t_map *game)
 
 int	main(int ac, char **av)
 {
-	char 	*map;
 	char	**split;
 	t_map	*game;
 
 	game = malloc(sizeof(t_map));
-	if (ac == 2)
-	{
-		ft_checkname(av[1]);	
-		map = ft_getmap(av[1]);
-		ft_emptyline(map);
-		split = ft_split(map, '\n');
-		ft_parsemap(split, game);
-		printf("Valid map!");
-	}
-	else
-	{
-		ft_printf("Error! Argument number must be 1 !");
-		return (0);
-	}
-	free(map);
+	if (game == NULL)
+		return (ft_putstr_fd("Malloc Error!\n", 2), 1);
+	ft_structinit(game);
+	if (ac != 2 || ft_checkname(av[1]))
+		return (free(game), ft_putstr_fd("Wrong Argument or map name!\n", 2), 1);
+	game->map = *ft_getmap(game, av[1]);
+	ft_emptyline(game->map);
+	split = ft_split(game->map, '\n');
+	ft_parsemap(split, game);
+	printf("Valid map!");
+	free(game);
 	return (0);
 }

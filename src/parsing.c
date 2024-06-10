@@ -6,48 +6,46 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/03 15:28:19 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:06:42 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 #include <stdio.h>
 
-char	*ft_getmap(char *str);
-void	ft_checkname(char *str);
+char	**ft_getmap(t_map *map, char *str);
+int		ft_checkname(char *str);
 void	ft_parsemap(char **map, t_map *game);
 void	gamecheck(char **map, t_map *game);
 void	ft_count(t_map *game, char **map);
 
-char	*ft_getmap(char *str)
+char	**ft_getmap(t_map *map, char *str)
 {
-	char	*map;
-	int		fd;
 	char	*line;
 	char	*tmp;
 
-	fd = open(str, O_RDONLY);
-	if (fd < 0)
+	map->fd = open(str, O_RDONLY);
+	if (map->fd < 0)
 		return (NULL);
-	map = ft_strdup("");
+	map->map = ft_strdup("");
 	if (!map)
 		return (NULL);
-	while ((line = get_next_line(fd)) != NULL)
+	while ((line = get_next_line(map->fd)) != NULL)
 	{
-		tmp = map;
-		map = ft_strjoin(map, line);
+		tmp = map->map;
+		map->map = ft_strjoin(map->map, line);
 		free(tmp);
-		if (!map)
+		if (!map->map)
 		{
-			close(fd);
+			close(map->fd);
 			return (NULL);
 		}
 	}
-	close(fd);
-	return (map);
+	close(map->fd);
+	return (map->map);
 }
 
-void	ft_checkname(char *str)
+int	ft_checkname(char *str)
 {
 	int	i;
 
@@ -59,15 +57,11 @@ void	ft_checkname(char *str)
 			i -= 3;
 			if (str[i] == '.' && str[i + 1] == 'b' && str[i + 2] == 'e'
 				&& str[i + 3] == 'r')
-				return ;
-			else
-			{
-				ft_printf("Wrong map name !");
-				exit(0);
-			}
+				return (0);
 		}
 		i++;
 	}
+	return (1);
 }
 
 void	ft_parsemap(char **map, t_map *game)
@@ -91,6 +85,7 @@ void	ft_parsemap(char **map, t_map *game)
 	}
 	walls(map, first, last);
 	gamecheck(map, game);
+	checkfloodfill(game);
 }
 
 void	gamecheck(char **map, t_map *game)
