@@ -6,37 +6,36 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:19:29 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/10 11:53:02 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:56:55 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void    ft_sizecheck(char **map);
-char	*ft_lastline(char **map);
+void	ft_sizecheck(char **map);
+char	*ft_lastline(char **map, t_map *game);
 void	walls(char **map, char *first, char *last);
 
-char	*ft_lastline(char **map)
+char	*ft_lastline(char **map, t_map *game)
 {
 	char	*last;
-	t_map	size;
 	int		i;
 
 	i = 0;
-	size.width = ft_strlen(map[0]);
+	game->width = ft_strlen(map[0]);
 	while (map[i + 1])
 		i++;
 	last = map[i];
-	size.height = i;
+	game->height = i + 1;
 	return (last);
 }
 
-void    ft_sizecheck(char **map)
+void	ft_sizecheck(char **map)
 {
-    char    *tmp;
-    int     i;
+	char	*tmp;
+	int		i;
 
-    i = 0;
+	i = 0;
 	tmp = map[0];
 	while (map[++i])
 	{
@@ -74,7 +73,7 @@ void	ft_emptyline(char *map)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	j = ft_strlen(map) - 1;
 	while (map[i] != '1')

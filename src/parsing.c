@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/10 14:06:42 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:00:30 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**ft_getmap(t_map *map, char *str)
 		}
 	}
 	close(map->fd);
-	return (map->map);
+	return (&map->map);
 }
 
 int	ft_checkname(char *str)
@@ -72,7 +72,7 @@ void	ft_parsemap(char **map, t_map *game)
 
 	ft_sizecheck(map);
 	first = map[0];
-	last = ft_lastline(map);
+	last = ft_lastline(map, game);
 	i = 0;
 	while (first[i] && last[i])
 	{

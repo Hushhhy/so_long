@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:48:44 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/10 12:00:07 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:24:15 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_floodfill(int x, int y, char **copy);
 void	checkfloodfill(t_map *ptr);
-char	**ft_mapcopy(char **map);
+char	**ft_mapcopy(char **map, t_map *ptr);
 
 void	ft_floodfill(int x, int y, char **copy)
 {
@@ -40,12 +40,12 @@ void	ft_floodfill(int x, int y, char **copy)
 
 void	checkfloodfill(t_map *ptr)
 {
-	char 	**copy;
+	char	**copy;
 	int		i;
 	int		j;
 
 	i = 0;
-	copy = ft_mapcopy(ptr->map);
+	copy = ft_mapcopy(&ptr->map, ptr);
 	ft_floodfill(ptr->x, ptr->y, copy);
 	while (i < ptr->height)
 	{
@@ -65,19 +65,20 @@ void	checkfloodfill(t_map *ptr)
 	}
 }
 
-char	**ft_mapcopy(char **map)
+char	**ft_mapcopy(char **map, t_map *ptr)
 {
-	t_map	*size;
 	int		i;
 	char	**copy;
 
 	i = 0;
-	size = NULL;
-	copy = malloc(sizeof(char *) * (size->height + 1));
+	copy = malloc(sizeof(char *) * (ptr->height + 1));
 	if (!copy)
-		return (free(copy), NULL);
-	while (i < size->height)
+		return (NULL);
+	while (i < ptr->height)
+		printf("%s\n", map[i]);
+	while (i < ptr->height)
 	{
+		printf("OUIIII\n");
 		copy[i] = ft_strdup(map[i]);
 		i++;
 	}
