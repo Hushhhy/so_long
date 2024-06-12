@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:14:12 by acarpent          #+#    #+#             */
-/*   Updated: 2024/05/31 11:37:51 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:59:11 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*ft_cleanup(char *stash)
 		return (free(stash), NULL);
 	if (stash[i] == '\n')
 		i++;
-	keep = ft_strdup(stash + i);
+	keep = ft_strsdup(stash + i);
 	if (!keep)
 		return (NULL);
 	free(stash);
@@ -88,7 +88,7 @@ char	*get_next_line(int fd)
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-	ft_bzero(buffer, BUFFER_SIZE + 1);
+	ft_sbzero(buffer, BUFFER_SIZE + 1);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (free(buffer), NULL);
 	mark = 1;
