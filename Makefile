@@ -6,7 +6,7 @@
 #    By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 14:48:00 by acarpent          #+#    #+#              #
-#    Updated: 2024/05/29 15:59:04 by acarpent         ###   ########.fr        #
+#    Updated: 2024/06/13 16:16:13 by acarpent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,13 +32,13 @@ LIBFT		=	$(LIBFT_PATH)/libft.a
 
 PRINTF		=	$(PRINTF_PATH)/libftprintf.a
 
-# MINILIBX	=	make -C ./minilibx-linux/
+MINILIBX	=	make -C ./minilibx-linux/
 
-# MLXFLAGS	=	-Lmlx_linux -L/usr/lib -lXext -lX11 -lm -lz
+MLXFLAGS	=	-Lmlx_linux -L/usr/lib -lXext -lX11 -lm -lz
 
-# MLX_EX		=	./minilibx-linux/libmlx.a
+MLX_EX		=	./minilibx-linux/libmlx.a
 
-# MLX_PATH	=	./minilibx-linux/
+MLX_PATH	=	./minilibx-linux/
 
 NAME		=	so_long
 
