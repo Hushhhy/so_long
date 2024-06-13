@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarpent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:54:15 by acarpent          #+#    #+#             */
-/*   Updated: 2023/11/17 12:25:50 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:46:38 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		count_words(const char *str, char c);
 char	*fill_word(const char *str, int start, int end);
-void	*ft_free(char **strs, int count);
+void	*ft_sfree(char **strs, int count);
 void	ft_initiate_vars(size_t *i, int *j, int *s_word);
 
 char	**ft_split(char const *s, char c)
@@ -36,7 +36,7 @@ char	**ft_split(char const *s, char c)
 		{
 			res[j] = fill_word(s, s_word, i);
 			if (!(res[j]))
-				return (ft_free(res, j));
+				return (ft_sfree(res, j));
 			s_word = -1;
 			j++;
 		}
@@ -73,7 +73,7 @@ int	count_words(char const *str, char c)
 	return (count);
 }
 
-void	*ft_free(char **strs, int count)
+void	*ft_sfree(char **strs, int count)
 {
 	int	i;
 

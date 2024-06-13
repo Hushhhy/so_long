@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/12 14:00:30 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:19:25 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 char	**ft_getmap(t_map *map, char *str);
 int		ft_checkname(char *str);
-void	ft_parsemap(char **map, t_map *game);
-void	gamecheck(char **map, t_map *game);
-void	ft_count(t_map *game, char **map);
+void	ft_parsemap(t_map *game);
+void	gamecheck(t_map *game);
+void	ft_count(t_map *game);
 
 char	**ft_getmap(t_map *map, char *str)
 {
@@ -28,9 +28,10 @@ char	**ft_getmap(t_map *map, char *str)
 	if (map->fd < 0)
 		return (NULL);
 	map->map = ft_strdup("");
-	if (!map)
+	if (!map->map)
 		return (NULL);
-	while ((line = get_next_line(map->fd)) != NULL)
+	line = get_next_line(map->fd);
+	while (line != NULL)
 	{
 		tmp = map->map;
 		map->map = ft_strjoin(map->map, line);
@@ -38,8 +39,10 @@ char	**ft_getmap(t_map *map, char *str)
 		if (!map->map)
 		{
 			close(map->fd);
-			return (NULL);
+			return (free(line), NULL);
 		}
+		free(line);
+		line = get_next_line(map->fd);
 	}
 	close(map->fd);
 	return (&map->map);
@@ -64,15 +67,15 @@ int	ft_checkname(char *str)
 	return (1);
 }
 
-void	ft_parsemap(char **map, t_map *game)
+void	ft_parsemap(t_map *game)
 {
 	char	*first;
 	char	*last;
 	int		i;
 
-	ft_sizecheck(map);
-	first = map[0];
-	last = ft_lastline(map, game);
+	ft_sizecheck(game);
+	first = game->split[0];
+	last = ft_lastline(game);
 	i = 0;
 	while (first[i] && last[i])
 	{
@@ -83,43 +86,43 @@ void	ft_parsemap(char **map, t_map *game)
 		}
 		i++;
 	}
-	walls(map, first, last);
-	gamecheck(map, game);
+	walls(game);
+	gamecheck(game);
 	checkfloodfill(game);
 }
 
-void	gamecheck(char **map, t_map *game)
+void	gamecheck(t_map *game)
 {
-	ft_count(game, map);
-	if (game->P != 1 || game->C != 1 || game->E < 1)
+	ft_count(game);
+	if (game->p != 1 || game->c < 1 || game->e != 1)
 	{
 		ft_printf("Error! Wrong map Format!");
-		exit(1);
+		exit_handler(game);
 	}
 }
 
-void	ft_count(t_map *game, char **map)
+void	ft_count(t_map *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (map[i])
+	while (game->split[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (game->split[i][j])
 		{
-			if (map[i][j] == 'P')
+			if (game->split[i][j] == 'P')
 			{
-				game->x = i;
-				game->y = j;
-				game->P++;
+				game->x = j;
+				game->y = i;
+				game->p++;
 			}
-			if (map[i][j] == 'E')
-				game->E++;
-			if (map[i][j] == 'C')
-				game->C++;
+			if (game->split[i][j] == 'E')
+				game->e++;
+			if (game->split[i][j] == 'C')
+				game->c++;
 			j++;
 		}
 		i++;

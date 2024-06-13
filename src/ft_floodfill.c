@@ -6,35 +6,27 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:48:44 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/12 14:24:15 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:17:51 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	ft_floodfill(int x, int y, char **copy);
+void	ft_floodfill(int x, int y, char **copy, t_map *map);
 void	checkfloodfill(t_map *ptr);
 char	**ft_mapcopy(char **map, t_map *ptr);
 
-void	ft_floodfill(int x, int y, char **copy)
+void	ft_floodfill(int x, int y, char **copy, t_map *map)
 {
-	t_map	*map;
-
-	map = NULL;
 	if (x >= map->width || y >= map->height || copy[y][x] == 'X')
 		return ;
-	if (copy[y][x] == '1' || copy[y][x] == 'N')
+	if (copy[y][x] == '1')
 		return ;
-	if (copy[y][x] == 'E')
-	{
-		copy[y][x] = 'X';
-		return ;
-	}
 	copy[y][x] = 'X';
-	ft_floodfill(x + 1, y, copy);
-	ft_floodfill(x - 1, y, copy);
-	ft_floodfill(x, y + 1, copy);
-	ft_floodfill(x, y - 1, copy);
+	ft_floodfill(x + 1, y, copy, map);
+	ft_floodfill(x - 1, y, copy, map);
+	ft_floodfill(x, y + 1, copy, map);
+	ft_floodfill(x, y - 1, copy, map);
 	return ;
 }
 
@@ -45,8 +37,8 @@ void	checkfloodfill(t_map *ptr)
 	int		j;
 
 	i = 0;
-	copy = ft_mapcopy(&ptr->map, ptr);
-	ft_floodfill(ptr->x, ptr->y, copy);
+	copy = ft_mapcopy(ptr->split, ptr);
+	ft_floodfill(ptr->x, ptr->y, copy, ptr);
 	while (i < ptr->height)
 	{
 		j = 0;
@@ -54,15 +46,15 @@ void	checkfloodfill(t_map *ptr)
 		{
 			if (copy[i][j] == 'E' || copy[i][j] == 'C')
 			{
-				ft_printf("Error! Wrong floodfill!");
-				free(copy);
+				ft_printf("Error! Map Invalid!");
+				ft_free(copy);
 				exit(1);
 			}
 			j++;
 		}
 		i++;
-		free(copy);
 	}
+	ft_free(copy);
 }
 
 char	**ft_mapcopy(char **map, t_map *ptr)
@@ -75,10 +67,7 @@ char	**ft_mapcopy(char **map, t_map *ptr)
 	if (!copy)
 		return (NULL);
 	while (i < ptr->height)
-		printf("%s\n", map[i]);
-	while (i < ptr->height)
 	{
-		printf("OUIIII\n");
 		copy[i] = ft_strdup(map[i]);
 		i++;
 	}
