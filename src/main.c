@@ -6,12 +6,11 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:34:09 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/13 15:57:11 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:29:47 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-#include <stdio.h>
 
 void	ft_structinit(t_map *game)
 {
@@ -30,6 +29,21 @@ void	exit_handler(t_map *game)
 	exit(1);
 }
 
+int	key_pressed(int key, t_map *game)
+{
+	if (key == KEY_ESC)
+		close_game(game);
+	if (key == KEY_W || key == KEY_UP)
+		move_up(game);
+	if (key == KEY_S || key == KEY_DOWN)
+		move_down(game);
+	if (key == KEY_A || key == KEY_LEFT)
+		move_left(game);
+	if (key == KEY_D || key == KEY_RIGHT)
+		move_right(game);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_map	*game;
@@ -44,8 +58,10 @@ int	main(int ac, char **av)
 	ft_emptyline(game);
 	game->split = ft_split(game->map, '\n');
 	ft_parsemap(game);
-	printf("Valid map!");
-	exit_handler(game);
 	ft_gaming(game);
+	mlx_hook(game->win, 2, 1L << 0, key_pressed, game);
+	mlx_hook(game->win, 17, 1L << 17, close_game, game);
+	mlx_loop(game->mlx);
+	exit_handler(game);
 	return (0);
 }
