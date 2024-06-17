@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:24:26 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/13 16:32:32 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:29:18 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,26 @@
 # include <X11/X.h>
 # include <fcntl.h>
 
+enum	e_keys {
+	KEY_ESC = 65307,
+	KEY_W = 119,
+	KEY_UP = 65362,
+	KEY_S = 115,
+	KEY_DOWN = 65364,
+	KEY_A = 97,
+	KEY_LEFT = 65361,
+	KEY_D = 100,
+	KEY_RIGHT = 65363,
+};
+
 typedef struct s_img {
 	void	*floor;
 	void	*collect;
 	void	*enemies;
+	void	*player;
+	void	*walls;
+	void	*exit;
+	void	*spawn;
 }	t_img;
 
 typedef struct s_map {
@@ -39,6 +55,7 @@ typedef struct s_map {
 	int		height;
 	int		screen_width;
 	int		screen_height;
+	int		steps;
 	int		c;
 	int		e;
 	int		p;
@@ -65,5 +82,6 @@ void	checkfloodfill(t_map *ptr);
 char	**ft_mapcopy(char **map, t_map *ptr);
 void	exit_handler(t_map *game);
 void	ft_gaming(t_map *game);
+int		close_game(t_map *game);
 
 #endif
