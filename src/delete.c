@@ -6,11 +6,73 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:27:02 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/17 16:06:25 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:42:37 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	del_img(t_map *game)
+{
+	if (game->img.floor != NULL)
+		mlx_destroy_image(game->mlx, game->img.floor);
+	if (game->img.collect != NULL)
+		mlx_destroy_image(game->mlx, game->img.collect);
+	if (game->img.enemies != NULL)
+		mlx_destroy_image(game->mlx, game->img.enemies);
+}
+
+void	del_player(t_map *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < PLAYER_FRAMES)
+	{
+		if (game->player.anim[i] != NULL)
+			mlx_destroy_image(game->mlx, game->player.anim[i]);
+		i++;
+	}
+}
+
+void	del_wall(t_map *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < WALL_FRAMES)
+	{
+		if (game->wall.anim[i] != NULL)
+			mlx_destroy_image(game->mlx, game->wall.anim[i]);
+		i++;
+	}
+}
+
+void	del_exit(t_map *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < EXIT_FRAMES)
+	{
+		if (game->spawn.anim[i] != NULL)
+			mlx_destroy_image(game->mlx, game->player.anim[i]);
+		i++;
+	}
+}
+
+void	del_spawn(t_map *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < SPAWN_FRAMES)
+	{
+		if (game->spawn.anim[i] != NULL)
+			mlx_destroy_image(game->mlx, game->spawn.anim[i]);
+		i++;
+	}
+}
 
 int	close_game(t_map *game)
 {
@@ -23,7 +85,7 @@ int	close_game(t_map *game)
 		mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
-	ft_free(game);
+	ft_free(game->split);
 	exit(0);
 }
 
@@ -43,6 +105,6 @@ void	exit_game(t_map *game, int win)
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
-	ft_free(game);
+	ft_free(game->split);
 	exit(0);
 }

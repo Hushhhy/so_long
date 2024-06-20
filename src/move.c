@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:18:29 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/17 16:06:53 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:47:34 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,19 @@ void	move_right(t_map *game)
 		game->x += 1;
 		if (game->split[game->y][game->x] == 'C')
 			game->c -= 1;
-		game->split[game->y][game->x] == 'P';
+		game->split[game->y][game->x] = 'P';
 		game->steps += 1;
 		ft_printf("steps %d\n", game->steps);
 	}
+}
+void	display_steps(t_map *game)
+{
+	char	*msg;
+	char	*scount;
+	
+	scount = ft_itoa(game->steps);
+	msg = ft_strjoin("Step count: ", scount);
+	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, msg);
+	free(scount);
+	free(msg);
 }
