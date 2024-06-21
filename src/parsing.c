@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/13 15:19:25 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:17:15 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,16 @@ int	ft_checkname(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i + 1] == '\0')
+		if (str[i] == '.')
 		{
-			i -= 3;
-			if (str[i] == '.' && str[i + 1] == 'b' && str[i + 2] == 'e'
-				&& str[i + 3] == 'r')
+			if (str[i + 1] == 'b' && str[i + 2] == 'e' && str[i + 3] == 'r')
+			{
+				if (str[i + 4] != '\0')
+					return (1);
 				return (0);
+			}
+			else
+				return (1);
 		}
 		i++;
 	}
