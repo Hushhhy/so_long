@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:24:26 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/21 15:53:36 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:47:21 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
-# include <stdio.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <fcntl.h>

@@ -6,12 +6,11 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/21 17:17:15 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:47:47 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-#include <stdio.h>
 
 char	**ft_getmap(t_map *map, char *str);
 int		ft_checkname(char *str);

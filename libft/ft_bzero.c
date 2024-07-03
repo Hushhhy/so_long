@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bezero.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarpent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:44:52 by acarpent          #+#    #+#             */
-/*   Updated: 2023/11/09 12:07:22 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/03 13:26:13 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,3 @@ void	ft_bzero(void *s, size_t n)
 		i++;
 	}
 }
-/*
-#include <stdio.h>
-
-int main(void)
-{
-    char buffer[10] = "Hello";
-    
-    printf("Avant ft_bzero : %s\n", buffer);
-
-    ft_bzero(buffer, 5);
-
-    printf("Après ft_bzero : %s\n", buffer);
-
-    bzero(buffer, 5);
-
-    printf("Vrai fonction : %s\n", buffer);
-
-    return 0;
-}
-*/

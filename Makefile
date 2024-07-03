@@ -6,11 +6,19 @@
 #    By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 14:48:00 by acarpent          #+#    #+#              #
-#    Updated: 2024/06/21 14:49:18 by acarpent         ###   ########.fr        #
+#    Updated: 2024/07/03 12:44:28 by acarpent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	$(shell find ./src -name '*.c')\
+SRCS		=	./src/main.c\
+				./src/close.c\
+				./src/delete.c\
+				./src/ft_floodfill.c\
+				./src/gaming.c\
+				./src/get_image.c\
+				./src/move.c\
+				./src/parsing_utils.c\
+				./src/parsing.c\
 				./get_next_line/get_next_line.c\
 				./get_next_line/get_next_line_utils.c\
 
@@ -36,9 +44,9 @@ MINILIBX	=	make -C ./mlx/
 
 MLXFLAGS	=	-Lmlx_linux -L/usr/lib -lXext -lX11 -lm -lz
 
-MLX_EX		=	./mlx/libmlx.a
+MLX_EX		=	$(MLX_PATH)/libmlx.a
 
-MLX_PATH	=	./minilibx-linux/
+MLX_PATH	=	./mlx
 
 NAME		=	so_long
 
@@ -60,7 +68,6 @@ clean:
 		$(RM) $(OBJS) 
 		make clean -sC $(LIBFT_PATH)
 		make clean -sC $(PRINTF_PATH)
-		make clean -sC  $(MLX_EX)
 
 fclean: clean
 		$(RM) $(NAME)

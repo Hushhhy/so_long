@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarpent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:12:18 by acarpent          #+#    #+#             */
-/*   Updated: 2023/11/16 15:13:55 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:47:38 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
 static char	*new_str(char const *s1, size_t start, size_t len);

@@ -6,12 +6,11 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:48:26 by acarpent          #+#    #+#             */
-/*   Updated: 2023/12/18 15:05:21 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:47:13 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_check(const char format, va_list arg)
 {
