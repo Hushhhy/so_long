@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:57:29 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/23 13:28:38 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:45:22 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ void	put_img(t_map *game)
 void	ft_gaming(t_map *game)
 {
 	game->mlx = mlx_init();
+	if (!game->mlx)
+	{
+		ft_printf("Error!\n");
+		exit(0);
+	}
 	mlx_get_screen_size(game->mlx, &game->screen_width, &game->screen_height);
 	if (game->width * 64 > game->screen_width
 		|| game->height * 64 > game->screen_height)

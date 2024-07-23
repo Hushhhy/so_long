@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:19:29 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/10 14:10:43 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:59:25 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_sizecheck(t_map *game)
 	{
 		if (ft_strlen(tmp) != ft_strlen(game->split[i]))
 		{
-			ft_printf("Error!\nWrong map format!\n");
+			ft_printf("Error!\nWrong map format!1\n");
 			exit_handler(game);
 		}
 	}
@@ -60,7 +60,7 @@ void	walls(t_map *game)
 			i++;
 		else
 		{
-			ft_printf("Error!\nWrong map format!\n");
+			ft_printf("Error!\nWrong map format!2\n");
 			exit_handler(game);
 		}
 	}
@@ -73,6 +73,12 @@ void	ft_emptyline(t_map *game)
 
 	i = 0;
 	j = ft_strlen(game->map) - 1;
+	if (game->map[0] == '\0' || game->map[0] == '\n')
+	{
+		ft_printf("Error!\nWrong map format!3\n");
+		free(game->map);
+		exit(1);
+	}
 	while (game->map[i] != '1')
 		i++;
 	while (game->map[j] != '1')
@@ -81,7 +87,7 @@ void	ft_emptyline(t_map *game)
 	{
 		if (game->map[i] == '\n' && game->map[i + 1] == '\n')
 		{
-			ft_printf("Error!\nWrong map format!\n");
+			ft_printf("Error!\nWrong map format!4\n");
 			free(game->map);
 			exit(1);
 		}

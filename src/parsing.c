@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/10 13:56:23 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:01:53 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	**ft_getmap(t_map *map, char *str)
 	{
 		tmp = map->map;
 		map->map = ft_strjoin(map->map, line);
-		free(tmp);
 		if (!map->map)
 		{
 			close(map->fd);
@@ -49,7 +48,15 @@ char	**ft_getmap(t_map *map, char *str)
 
 int	ft_checkname(char *str)
 {
-	return (ft_strncmp(ft_strrchr(str, '.'), ".ber", 4));
+	char	*tmp;
+
+	tmp = ft_strrchr(str, '.');
+	if (!tmp)
+	{
+		ft_printf("Error!\nName incorect!6\n");
+		exit(0);
+	}
+	return (ft_strncmp(tmp, ".ber", 4));
 }
 
 void	ft_parsemap(t_map *game)
@@ -66,7 +73,9 @@ void	ft_parsemap(t_map *game)
 	{
 		if (first[i] != '1' || last[i] != '1')
 		{
-			ft_printf("Error!\nWrong map format!\n");
+			ft_printf("Error!\nWrong map format!7\n");
+			free(game->map);
+			ft_free(game->split);
 			exit(1);
 		}
 		i++;
@@ -81,7 +90,7 @@ void	gamecheck(t_map *game)
 	ft_count(game);
 	if (game->p != 1 || game->c < 1 || game->e != 1)
 	{
-		ft_printf("Error!\nWrong map Format!\n");
+		ft_printf("Error!\nWrong map Format!8\n");
 		exit_handler(game);
 	}
 }
