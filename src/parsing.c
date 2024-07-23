@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/03 12:47:47 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:56:23 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,7 @@ char	**ft_getmap(t_map *map, char *str)
 
 int	ft_checkname(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '.')
-		{
-			if (str[i + 1] == 'b' && str[i + 2] == 'e' && str[i + 3] == 'r')
-			{
-				if (str[i + 4] != '\0')
-					return (1);
-				return (0);
-			}
-			else
-				return (1);
-		}
-		i++;
-	}
-	return (1);
+	return (ft_strncmp(ft_strrchr(str, '.'), ".ber", 4));
 }
 
 void	ft_parsemap(t_map *game)
@@ -84,7 +66,7 @@ void	ft_parsemap(t_map *game)
 	{
 		if (first[i] != '1' || last[i] != '1')
 		{
-			ft_printf("Error! Wrong map format!");
+			ft_printf("Error!\nWrong map format!\n");
 			exit(1);
 		}
 		i++;
@@ -99,7 +81,7 @@ void	gamecheck(t_map *game)
 	ft_count(game);
 	if (game->p != 1 || game->c < 1 || game->e != 1)
 	{
-		ft_printf("Error! Wrong map Format!");
+		ft_printf("Error!\nWrong map Format!\n");
 		exit_handler(game);
 	}
 }

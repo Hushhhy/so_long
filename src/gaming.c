@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:57:29 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/03 12:37:38 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:28:38 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	get_img(t_map *game, char *path, void **ptr)
 	*ptr = mlx_xpm_file_to_image(game->mlx, path, &width, &height);
 	if (*ptr == NULL)
 	{
-		ft_printf("Failed to load image : %s\n", path);
+		ft_printf("Error!\nFailed to load image : %s\n", path);
 		close_game(game);
 	}
 }
@@ -74,8 +74,12 @@ void	ft_gaming(t_map *game)
 	if (game->width * 64 > game->screen_width
 		|| game->height * 64 > game->screen_height)
 	{
-		ft_putstr_fd("Error! Map too big!\n", 2);
-		close_game(game);
+		ft_putstr_fd("Error!\nMap too big!\n", 2);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		ft_free(game->split);
+		free(game->map);
+		exit(0);
 	}
 	game->win = mlx_new_window(game->mlx, game->width * 64,
 			game->height * 64, "so_long");

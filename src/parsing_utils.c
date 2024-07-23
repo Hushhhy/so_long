@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:19:29 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/21 14:50:25 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:10:43 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_sizecheck(t_map *game)
 	{
 		if (ft_strlen(tmp) != ft_strlen(game->split[i]))
 		{
-			ft_printf("Error! eWrong map format!");
+			ft_printf("Error!\nWrong map format!\n");
 			exit_handler(game);
 		}
 	}
@@ -60,7 +60,7 @@ void	walls(t_map *game)
 			i++;
 		else
 		{
-			ft_printf("Error! Wrong map format!");
+			ft_printf("Error!\nWrong map format!\n");
 			exit_handler(game);
 		}
 	}
@@ -81,8 +81,9 @@ void	ft_emptyline(t_map *game)
 	{
 		if (game->map[i] == '\n' && game->map[i + 1] == '\n')
 		{
-			ft_printf("Error! Wrong map format!");
-			exit_handler(game);
+			ft_printf("Error!\nWrong map format!\n");
+			free(game->map);
+			exit(1);
 		}
 		i++;
 	}

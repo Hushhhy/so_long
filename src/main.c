@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:34:09 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/21 16:55:03 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:29:42 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	exit_handler(t_map *game)
 {
 	free(game->map);
 	ft_free(game->split);
-	free(game);
 	exit(1);
 }
 
@@ -46,26 +45,27 @@ int	key_pressed(int key, t_map *game)
 
 int	main(int ac, char **av)
 {
-	t_map	*game;
+	t_map	game;
 
-	game = malloc(sizeof(t_map));
-	if (game == NULL)
-		return (free(game), ft_putstr_fd("Malloc Error!\n", 2), 1);
 	if (ac != 2 || ft_checkname(av[1]) == 1)
 	{
-		free(game);
-		ft_putstr_fd("Wrong Argument or map name!\n", 2);
+		ft_putstr_fd("Error!\nWrong Argument or map name!\n", 2);
 		return (1);
 	}
-	ft_structinit(game);
-	game->map = *ft_getmap(game, av[1]);
-	ft_emptyline(game);
-	game->split = ft_split(game->map, '\n');
-	ft_parsemap(game);
-	ft_gaming(game);
-	mlx_hook(game->win, 2, 1L << 0, key_pressed, game);
-	mlx_hook(game->win, 17, 1L << 17, close_game, game);
-	mlx_loop(game->mlx);
-	exit_handler(game);
+	ft_structinit(&game);
+	if (!ft_getmap(&game, av[1]))
+	{
+		ft_printf("Error!\nMap doesn't exist\n");
+		return (1);
+	}
+	ft_emptyline(&game);
+	ft_checkchar(&game);
+	game.split = ft_split(game.map, '\n');
+	ft_parsemap(&game);
+	ft_gaming(&game);
+	mlx_hook(game.win, 2, 1L << 0, key_pressed, &game);
+	mlx_hook(game.win, 17, 1L << 17, close_game, &game);
+	mlx_loop(game.mlx);
+	exit_handler(&game);
 	return (0);
 }

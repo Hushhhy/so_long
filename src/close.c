@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:23:25 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/21 16:48:48 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:44:49 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	close_game(t_map *game)
 	free(game->mlx);
 	ft_free(game->split);
 	free(game->map);
-	free(game);
 	exit(0);
 }
 
