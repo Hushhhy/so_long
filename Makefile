@@ -6,7 +6,7 @@
 #    By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 14:48:00 by acarpent          #+#    #+#              #
-#    Updated: 2024/07/10 13:48:52 by acarpent         ###   ########.fr        #
+#    Updated: 2024/07/23 14:21:31 by acarpent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS		=	./src/main.c\
 				./src/move.c\
 				./src/parsing_utils.c\
 				./src/parsing.c\
+				./src/ft_checkchar.c\
 				./get_next_line/get_next_line.c\
 				./get_next_line/get_next_line_utils.c\
 
