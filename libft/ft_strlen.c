@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:56:32 by acarpent          #+#    #+#             */
-/*   Updated: 2024/06/12 14:08:49 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:07:37 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	while (s[i])
-		i++;
+	if (s)
+	{
+		while (s[i])
+			i++;
+	}
 	return (i);
 }
 /*

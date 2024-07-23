@@ -6,7 +6,7 @@
 #    By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 14:48:00 by acarpent          #+#    #+#              #
-#    Updated: 2024/07/03 12:44:28 by acarpent         ###   ########.fr        #
+#    Updated: 2024/07/10 13:48:52 by acarpent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,6 @@ LIBFT		=	$(LIBFT_PATH)/libft.a
 
 PRINTF		=	$(PRINTF_PATH)/libftprintf.a
 
-MINILIBX	=	make -C ./mlx/
-
 MLXFLAGS	=	-Lmlx_linux -L/usr/lib -lXext -lX11 -lm -lz
 
 MLX_EX		=	$(MLX_PATH)/libmlx.a
@@ -55,7 +53,10 @@ all: $(NAME)
 %.o:	%.c
 		$(CC) $(CFLAGS) -I$(LIBFT_PATH) -I$(PRINTF_PATH) -c $? -o $@
 
-$(NAME): $(OBJS) $(LIBFT) $(PRINTF)
+$(MLX_EX):
+	$(MAKE) -C $(MLX_PATH)
+
+$(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(MLX_EX)
 		$(CC) $(CLFAGS) $(OBJS) $(LIBFT) $(PRINTF) $(MLX_EX) $(MLXFLAGS) -o $(NAME)
 
 $(LIBFT):
@@ -68,6 +69,7 @@ clean:
 		$(RM) $(OBJS) 
 		make clean -sC $(LIBFT_PATH)
 		make clean -sC $(PRINTF_PATH)
+		make clean -sC $(MLX_PATH)
 
 fclean: clean
 		$(RM) $(NAME)
