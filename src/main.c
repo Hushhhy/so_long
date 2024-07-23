@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:34:09 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/23 14:44:23 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:33:33 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_structinit(t_map *game)
 {
+	*game = (t_map){};
 	game->c = 0;
 	game->e = 0;
 	game->p = 0;

@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/23 15:01:53 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:46:05 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	**ft_getmap(t_map *map, char *str)
 		}
 		free(line);
 		line = get_next_line(map->fd);
+		free(tmp);
 	}
 	close(map->fd);
 	return (&map->map);
