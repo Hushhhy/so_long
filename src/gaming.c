@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:57:29 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/23 14:45:22 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:04:45 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	ft_gaming(t_map *game)
 	if (!game->mlx)
 	{
 		ft_printf("Error!\n");
+		free(game->map);
+		ft_free(game->split);
 		exit(0);
 	}
 	mlx_get_screen_size(game->mlx, &game->screen_width, &game->screen_height);

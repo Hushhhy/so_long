@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:48:44 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/23 13:27:20 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:04:18 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	checkfloodfill(t_map *ptr)
 		j = 0;
 		while (j < ptr->width)
 		{
-			if (copy[i][j] == 'C')
+			if (copy[i][j] == 'C' || copy[i][j] == 'E')
 			{
 				ft_printf("Error!\nMap Invalid!\n");
 				ft_free(copy);
