@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:24:26 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/23 15:11:48 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/08/22 13:22:57 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_map {
 	t_img			img;
 }				t_map;
 
-int		ft_checkname(char *str);
+void	ft_checkname(char *str);
 char	*get_next_line(int fd);
 char	**ft_getmap(t_map *map, char *str);
 void	ft_parsemap(t_map *game);
@@ -91,5 +91,6 @@ void	get_image(t_map *game);
 void	get_img(t_map *game, char *path, void **ptr);
 void	del_img(t_map *game);
 void	ft_checkchar(t_map *game);
+int		ft_envcheck(char **env);
 
 #endif
