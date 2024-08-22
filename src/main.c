@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:34:09 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/23 15:33:33 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/08/22 13:21:35 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ int	main(int ac, char **av, char **env)
 {
 	t_map	game;
 
-	if (ac != 2 || ft_checkname(av[1]) == 1)
+	if (ac != 2)
 	{
-		ft_putstr_fd("Error!\nWrong Argument or map name!\n", 2);
+		ft_putstr_fd("Error!\nWrong Argument number!\n", 2);
 		return (1);
 	}
-	if (!env[0])
-		return (ft_printf("Empty env\n"), 0);
+	ft_checkname(av[1]);
+	ft_envcheck(env);
 	ft_structinit(&game);
 	if (!ft_getmap(&game, av[1]))
 	{

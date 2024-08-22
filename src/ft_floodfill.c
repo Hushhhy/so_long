@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:48:44 by acarpent          #+#    #+#             */
-/*   Updated: 2024/08/19 16:04:18 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/08/22 11:50:18 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ void	ft_floodfill(int x, int y, char **copy, t_map *map)
 {
 	if (x >= map->width || y >= map->height || copy[y][x] == 'X')
 		return ;
-	if (copy[y][x] == '1' || copy[y][x] == 'N' || copy[y][x] == 'E')
+	if (copy[y][x] == '1' || copy[y][x] == 'N')
 		return ;
+	if (copy[y][x] == 'E')
+	{
+		copy[y][x] = '1';
+		return ;
+	}
 	copy[y][x] = 'X';
 	ft_floodfill(x + 1, y, copy, map);
 	ft_floodfill(x - 1, y, copy, map);

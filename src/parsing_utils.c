@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:19:29 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/23 14:59:25 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/08/22 13:23:15 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,11 @@ void	ft_emptyline(t_map *game)
 		}
 		i++;
 	}
+}
+
+int	ft_envcheck(char **env)
+{
+	if (!env[0])
+		return (ft_printf("Empty env\n"), 0);
+	return (0);
 }

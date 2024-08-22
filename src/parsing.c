@@ -6,14 +6,14 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/23 15:46:05 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/08/22 13:16:16 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
 char	**ft_getmap(t_map *map, char *str);
-int		ft_checkname(char *str);
+void	ft_checkname(char *str);
 void	ft_parsemap(t_map *game);
 void	gamecheck(t_map *game);
 void	ft_count(t_map *game);
@@ -47,17 +47,17 @@ char	**ft_getmap(t_map *map, char *str)
 	return (&map->map);
 }
 
-int	ft_checkname(char *str)
+void	ft_checkname(char *str)
 {
 	char	*tmp;
 
 	tmp = ft_strrchr(str, '.');
-	if (!tmp)
+	ft_printf("%s\n", tmp);
+	if (!tmp || ft_strncmp(tmp, ".ber\0", 5) != 0)
 	{
 		ft_printf("Error!\nName incorect!6\n");
 		exit(0);
 	}
-	return (ft_strncmp(tmp, ".ber", 4));
 }
 
 void	ft_parsemap(t_map *game)
