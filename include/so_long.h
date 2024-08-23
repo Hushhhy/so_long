@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:24:26 by acarpent          #+#    #+#             */
-/*   Updated: 2024/08/22 13:22:57 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:09:02 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void	get_img(t_map *game, char *path, void **ptr);
 void	del_img(t_map *game);
 void	ft_checkchar(t_map *game);
 int		ft_envcheck(char **env);
+void	ft_doublen(t_map *game, int i);
 
 #endif
