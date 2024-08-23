@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:26:46 by acarpent          #+#    #+#             */
-/*   Updated: 2024/08/22 13:16:16 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/08/23 12:19:40 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	ft_checkname(char *str)
 	char	*tmp;
 
 	tmp = ft_strrchr(str, '.');
-	ft_printf("%s\n", tmp);
 	if (!tmp || ft_strncmp(tmp, ".ber\0", 5) != 0)
 	{
 		ft_printf("Error!\nName incorect!6\n");

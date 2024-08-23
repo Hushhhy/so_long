@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgiraud <rgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:19:29 by acarpent          #+#    #+#             */
-/*   Updated: 2024/08/22 22:15:10 by rgiraud          ###   ########.fr       */
+/*   Updated: 2024/08/23 11:09:06 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,29 +70,22 @@ void	ft_emptyline(t_map *game)
 {
 	int	i;
 	int	j;
-	int	len;
 
-	len = ft_strlen(game->map);
 	i = 0;
-	j = len - 1;
-	if (len == 0 || game->map[0] == '\0' || game->map[0] == '\n')
+	j = ft_strlen(game->map) - 1;
+	if (game->map[0] == '\0' || game->map[0] == '\n')
 	{
 		ft_printf("Error!\nWrong map format!3\n");
 		free(game->map);
 		exit(1);
 	}
-	while (i < len && game->map[i] != '1')
+	while (game->map[i] != '1' && game->map[i])
 		i++;
-	while (j >= 0 && game->map[j] != '1')
+	while (game->map[j] != '1' && game->map[i])
 		j--;
-	while (i < j)
+	while (i <= j)
 	{
-		if (game->map[i] == '\n' && i + 1 < len && game->map[i + 1] == '\n')
-		{
-			ft_printf("Error!\nWrong map format!4\n");
-			free(game->map);
-			exit(1);
-		}
+		ft_doublen(game, i);
 		i++;
 	}
 }
